@@ -11,6 +11,11 @@
         
     </Grid>-->
     <local:FlyOutAdornerGrid IsFlyoutVisible="True" ShowFilter="True">
+        <local:FlyOutAdornerGrid.PlaceHolder1>
+            <StackPanel>
+                <Label Content="Set in View!"/>
+            </StackPanel>
+        </local:FlyOutAdornerGrid.PlaceHolder1>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

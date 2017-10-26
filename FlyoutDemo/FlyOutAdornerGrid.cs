@@ -12,7 +12,13 @@ namespace FlyoutDemo
         public static readonly DependencyProperty IsFlyoutVisibleProperty = DependencyProperty.Register(nameof(IsFlyoutVisible), typeof(bool), typeof(FlyOutAdornerGrid), new FrameworkPropertyMetadata(IsAdornerVisible_PropertyChanged));
         public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty ShowFilterProperty = DependencyProperty.Register(nameof(ShowFilter), typeof(bool), typeof(FlyOutAdornerGrid), new PropertyMetadata(false));
-
+        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(FlyOutAdornerGrid), new /*UI*/PropertyMetadata(null));
+        public object PlaceHolder1
+        {
+            get { return (object)GetValue(PlaceHolder1Property); }
+            set { SetValue(PlaceHolder1Property, value); }
+        }
+        
         public ICommand ClearFilterCommand
         {
             get { return (ICommand)GetValue(ClearFilterCommandProperty); }
@@ -119,6 +125,15 @@ namespace FlyoutDemo
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
             BindingOperations.SetBinding(flyoutControl, Flyout.ShowFilterCheckedProperty, showFilterBinding);
+
+            Binding contentBinding = new Binding
+            {
+                Source = this,
+                Path = new PropertyPath("PlaceHolder1"),
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            BindingOperations.SetBinding(flyoutControl, Flyout.PlaceHolder1Property, contentBinding);
 
             Binding clearFilterCommandBinding = new Binding
             {

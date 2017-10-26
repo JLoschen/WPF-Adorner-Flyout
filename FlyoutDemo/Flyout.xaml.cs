@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace FlyoutDemo
 {
-    /// <summary>
-    /// Interaction logic for Flyout.xaml
-    /// </summary>
-    public partial class Flyout : UserControl
+    public partial class Flyout
     {
         private readonly Style _arrowButtonMouseOverStyle;
         private readonly Style _arrowButtonOpaqueStyle;
@@ -24,6 +20,13 @@ namespace FlyoutDemo
 
         public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(Flyout), new PropertyMetadata(null));
         public static readonly DependencyProperty ShowFilterCheckedProperty = DependencyProperty.Register(nameof(ShowFilterChecked), typeof(bool), typeof(Flyout), new PropertyMetadata(false));
+        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(Flyout), new UIPropertyMetadata(null));
+
+        public object PlaceHolder1
+        {
+            get { return (object)GetValue(PlaceHolder1Property); }
+            set { SetValue(PlaceHolder1Property, value); }
+        }
 
         public ICommand ClearFilterCommand
         {
