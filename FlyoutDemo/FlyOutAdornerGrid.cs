@@ -13,6 +13,21 @@ namespace FlyoutDemo
         public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty ShowFilterProperty = DependencyProperty.Register(nameof(ShowFilter), typeof(bool), typeof(FlyOutAdornerGrid), new PropertyMetadata(false));
         public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(FlyOutAdornerGrid), new /*UI*/PropertyMetadata(null));
+        public static readonly DependencyProperty ContentXProperty = DependencyProperty.Register(nameof(ContentX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+        public static readonly DependencyProperty ContentYProperty = DependencyProperty.Register(nameof(ContentY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+
+        public int ContentY
+        {
+            get { return (int)GetValue(ContentYProperty); }
+            set { SetValue(ContentYProperty, value); }
+        }
+
+        public int ContentX
+        {
+            get { return (int)GetValue(ContentXProperty); }
+            set { SetValue(ContentXProperty, value); }
+        }
+
         public object PlaceHolder1
         {
             get { return (object)GetValue(PlaceHolder1Property); }
@@ -110,7 +125,7 @@ namespace FlyoutDemo
 
         private FrameworkElement CreateContent()
         {
-            var flyoutControl = new Flyout
+            var flyoutControl = new Flyout2
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -124,7 +139,7 @@ namespace FlyoutDemo
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
-            BindingOperations.SetBinding(flyoutControl, Flyout.ShowFilterCheckedProperty, showFilterBinding);
+            BindingOperations.SetBinding(flyoutControl, Flyout2.ShowFilterCheckedProperty, showFilterBinding);
 
             Binding contentBinding = new Binding
             {
@@ -133,7 +148,7 @@ namespace FlyoutDemo
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
-            BindingOperations.SetBinding(flyoutControl, Flyout.PlaceHolder1Property, contentBinding);
+            BindingOperations.SetBinding(flyoutControl, Flyout2.PlaceHolder1Property, contentBinding);
 
             Binding clearFilterCommandBinding = new Binding
             {
@@ -142,7 +157,7 @@ namespace FlyoutDemo
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
-            BindingOperations.SetBinding(flyoutControl, Flyout.ClearFilterCommandProperty, clearFilterCommandBinding);
+            BindingOperations.SetBinding(flyoutControl, Flyout2.ClearFilterCommandProperty, clearFilterCommandBinding);
 
             return flyoutControl;
         }

@@ -5,13 +5,12 @@ using System.Windows.Media;
 
 namespace FlyoutDemo
 {
-    public partial class Flyout
+    public partial class Flyout2
     {
         private readonly Style _arrowButtonMouseOverStyle;
         private readonly Style _arrowButtonOpaqueStyle;
-
         
-        public Flyout()
+        public Flyout2()
         {
             InitializeComponent();
             (Content as FrameworkElement).DataContext = this;
@@ -35,11 +34,11 @@ namespace FlyoutDemo
         public int BorderWidth { get; set; } = 125;
 
         #region DependencyProps
-        public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(Flyout), new PropertyMetadata(null));
-        public static readonly DependencyProperty ShowFilterCheckedProperty = DependencyProperty.Register(nameof(ShowFilterChecked), typeof(bool), typeof(Flyout), new PropertyMetadata(false));
-        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(Flyout), new UIPropertyMetadata(null));
-        public static readonly DependencyProperty ContentXProperty = DependencyProperty.Register(nameof(ContentX), typeof(int), typeof(Flyout), new PropertyMetadata(0));
-        public static readonly DependencyProperty ContentYProperty = DependencyProperty.Register(nameof(ContentY), typeof(int), typeof(Flyout), new PropertyMetadata(0));
+        public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(Flyout2), new PropertyMetadata(null));
+        public static readonly DependencyProperty ShowFilterCheckedProperty = DependencyProperty.Register(nameof(ShowFilterChecked), typeof(bool), typeof(Flyout2), new PropertyMetadata(false));
+        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(Flyout2), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty ContentXProperty = DependencyProperty.Register(nameof(ContentX), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
+        public static readonly DependencyProperty ContentYProperty = DependencyProperty.Register(nameof(ContentY), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
 
         public int ContentY
         {

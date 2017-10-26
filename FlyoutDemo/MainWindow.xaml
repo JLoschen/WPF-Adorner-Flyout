@@ -12,9 +12,12 @@
     </Grid>-->
     <local:FlyOutAdornerGrid IsFlyoutVisible="True" ShowFilter="True">
         <local:FlyOutAdornerGrid.PlaceHolder1>
-            <StackPanel>
+            <!--<StackPanel>
                 <Label Content="Set in View!"/>
-            </StackPanel>
+            </StackPanel>-->
+            <Grid Height="50" Width="70" Background="Purple">
+                <TextBlock Text="Test Content!"/>
+            </Grid>
         </local:FlyOutAdornerGrid.PlaceHolder1>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
