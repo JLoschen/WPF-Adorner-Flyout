@@ -18,15 +18,6 @@ namespace FlyoutDemo
             _arrowButtonMouseOverStyle = FindResource("OuterBorderStyle") as Style;
             _arrowButtonOpaqueStyle = FindResource("OuterBorderOpaqueStyle") as Style;
             OuterBorder.Style = _arrowButtonMouseOverStyle;
-
-            //var tf = new TranslateTransform
-            //{
-            //    X = -100,
-            //    Y = -30
-            //};
-
-            //tf.SetValue(FrameworkElement.NameProperty, "FlyOut");
-            //OuterBorder.RenderTransform = tf;
         }
 
         public int MyX { get; set; } = -5;

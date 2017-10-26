@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FlyoutDemo.Flyout2"
+﻿<UserControl x:Class="FlyoutDemo.TopFlyout"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -23,6 +23,48 @@
                 <Setter Property="Opacity" Value="1"/>
             </Style>
             <flyoutDemo:BorderClipConverter x:Key="BorderClipConverter"/>
+            <Style TargetType="{x:Type Path}" x:Key="ArrowStyle">
+                <Setter Property="Data" Value="M0,0 L0,6 L3,3 Z"/>
+                <Setter Property="Fill" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5,0,0,0"/>
+                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                <Setter Property="Height" Value="8"/>
+                <Setter Property="Width" Value="4"/>
+                <Setter Property="Stretch" Value="Fill"/>
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="90" />
+                    </Setter.Value>
+                </Setter>
+                <!--<Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=IsChecked}"
+                                                         Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
+                                                                                     By="180"
+                                                                                     BeginTime="00:00:00.2"
+                                                                                     Duration="00:00:00.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
+                                                                                     By="-180"
+                                                                                     BeginTime="00:00:00.2"
+                                                                                     Duration="00:00:00.1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>-->
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
     <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1">
@@ -61,11 +103,12 @@
                     </Style>
                 </ToggleButton.Style>
 
-                <Image Source="/FlyoutDemo;component/arrow 25x19.png" RenderTransformOrigin="0.5,0.5" Height="19" Width="14" x:Name="arrow" >
+                <!--<Image Source="/FlyoutDemo;component/arrow 25x19.png" RenderTransformOrigin="0.5,0.5" Height="19" Width="14" x:Name="arrow" >
                     <Image.RenderTransform>
                         <RotateTransform Angle="-135"/>
                     </Image.RenderTransform>
-                </Image>
+                </Image>-->
+                <Path Style="{StaticResource ArrowStyle}" x:Name="arrow"/>
                 <ToggleButton.Triggers>
                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                         <BeginStoryboard>
@@ -73,9 +116,9 @@
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="-10" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
+                                <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="-10"/>
-                                </DoubleAnimationUsingKeyFrames>
+                                </DoubleAnimationUsingKeyFrames>-->
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -86,9 +129,9 @@
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyY}" />
                                 </DoubleAnimationUsingKeyFrames>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
+                                <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyX}" />
-                                </DoubleAnimationUsingKeyFrames>
+                                </DoubleAnimationUsingKeyFrames>-->
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>

@@ -89,7 +89,6 @@ namespace FlyoutDemo
             {
                 //var dg = UIHelper.TryFindParent<DataGrid>(this);
                 var dg = this;
-                //var dg = 
 
                 if (dg != null && !ControlIsAdorned(dg))
                 {
@@ -109,7 +108,7 @@ namespace FlyoutDemo
 
         private FrameworkElement CreateContent()
         {
-            var flyoutControl = new Flyout2
+            var flyoutControl = new /*Flyout2*/TopFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -133,7 +132,7 @@ namespace FlyoutDemo
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as Flyout2;
+            var flyout = sender as /*Flyout2*/TopFlyout;
             if (flyout == null) return;
             MyX = 25 - (int)flyout.ActualWidth;
             MyY = 25 - (int)flyout.ActualHeight;
