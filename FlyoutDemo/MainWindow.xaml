@@ -7,6 +7,9 @@
         
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
     <!--<Grid>
         
     </Grid>-->
@@ -15,8 +18,9 @@
             <!--<StackPanel>
                 <Label Content="Set in View!"/>
             </StackPanel>-->
-            <Grid Height="50" Width="70" Background="Purple">
-                <TextBlock Text="Test Content!"/>
+            <Grid Height="70" Width="150" Background="Purple">
+                <!--<TextBlock Text="Test Content!"/>-->
+                <Button Content="Test Button" Command="{Binding TestCommand}"/>
             </Grid>
         </local:FlyOutAdornerGrid.PlaceHolder1>
         <Grid.ColumnDefinitions>
@@ -27,7 +31,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
+        <Border Background="Blue" Grid.Row="0" Grid.Column="0">
+            <Button Content="Test2" Command="{Binding TestCommand}"/>
+        </Border>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
         <Border Background="Orange" Grid.Row="1" Grid.Column="0"/>
         <Border Background="Purple" Grid.Row="1" Grid.Column="1"/>

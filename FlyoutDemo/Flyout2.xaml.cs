@@ -26,19 +26,46 @@ namespace FlyoutDemo
 
             //tf.SetValue(FrameworkElement.NameProperty, "FlyOut");
             //OuterBorder.RenderTransform = tf;
+
+            //var x = PlaceHolder1.Width;
+
+            Loaded += OnLoaded;
+
         }
 
-        public int MyX { get; set; } = -5;
-        public int MyY { get; set; } = -10;
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("width " + PlaceHolder1.Width);
+            Console.WriteLine("Actual width " + PlaceHolder1.ActualWidth);
+            MyX = 25 - (int)ActualWidth;
+            MyY = 25 - (int)ActualHeight;
+        }
+
+        //public int MyX { get; set; } = -5;
+        //public int MyY { get; set; } = -10;
         public int BorderHeight { get; set; } = 55;
         public int BorderWidth { get; set; } = 125;
 
         #region DependencyProps
         public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(Flyout2), new PropertyMetadata(null));
         public static readonly DependencyProperty ShowFilterCheckedProperty = DependencyProperty.Register(nameof(ShowFilterChecked), typeof(bool), typeof(Flyout2), new PropertyMetadata(false));
-        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(Flyout2), new UIPropertyMetadata(null));
+        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(FrameworkElement), typeof(Flyout2), new UIPropertyMetadata(null));
         public static readonly DependencyProperty ContentXProperty = DependencyProperty.Register(nameof(ContentX), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
         public static readonly DependencyProperty ContentYProperty = DependencyProperty.Register(nameof(ContentY), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
+        public static readonly DependencyProperty MyYProperty = DependencyProperty.Register(nameof(MyY), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
+        public static readonly DependencyProperty MyXProperty = DependencyProperty.Register(nameof(MyX), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
+
+        public int MyY
+        {
+            get { return (int)GetValue(MyYProperty); }
+            set { SetValue(MyYProperty, value); }
+        }
+
+        public int MyX
+        {
+            get { return (int)GetValue(MyXProperty); }
+            set { SetValue(MyXProperty, value); }
+        }
 
         public int ContentY
         {
@@ -52,9 +79,9 @@ namespace FlyoutDemo
             set { SetValue(ContentXProperty, value); }
         }
 
-        public object PlaceHolder1
+        public /*object*/FrameworkElement PlaceHolder1
         {
-            get { return (object)GetValue(PlaceHolder1Property); }
+            get { return /*(object)*/(FrameworkElement) GetValue(PlaceHolder1Property); }
             set { SetValue(PlaceHolder1Property, value); }
         }
 

@@ -12,7 +12,7 @@ namespace FlyoutDemo
         public static readonly DependencyProperty IsFlyoutVisibleProperty = DependencyProperty.Register(nameof(IsFlyoutVisible), typeof(bool), typeof(FlyOutAdornerGrid), new FrameworkPropertyMetadata(IsAdornerVisible_PropertyChanged));
         public static readonly DependencyProperty ClearFilterCommandProperty = DependencyProperty.Register(nameof(ClearFilterCommand), typeof(ICommand), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty ShowFilterProperty = DependencyProperty.Register(nameof(ShowFilter), typeof(bool), typeof(FlyOutAdornerGrid), new PropertyMetadata(false));
-        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(object), typeof(FlyOutAdornerGrid), new /*UI*/PropertyMetadata(null));
+        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(/*object*/FrameworkElement), typeof(FlyOutAdornerGrid), new /*UI*/PropertyMetadata(null));
         public static readonly DependencyProperty ContentXProperty = DependencyProperty.Register(nameof(ContentX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty ContentYProperty = DependencyProperty.Register(nameof(ContentY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
 
@@ -28,9 +28,9 @@ namespace FlyoutDemo
             set { SetValue(ContentXProperty, value); }
         }
 
-        public object PlaceHolder1
+        public /*object*/FrameworkElement PlaceHolder1
         {
-            get { return (object)GetValue(PlaceHolder1Property); }
+            get { return (/*object*/FrameworkElement)GetValue(PlaceHolder1Property); }
             set { SetValue(PlaceHolder1Property, value); }
         }
         
