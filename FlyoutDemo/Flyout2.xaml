@@ -35,10 +35,10 @@
         <!--<TranslateTransform x:Name="FlyOut" Y="-30" X="-100" />-->
         <!--Height="55" Width="125"-->
         
-        <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" >
+        <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1">
             <Border.RenderTransform>
                 <!--<TranslateTransform x:Name="FlyOut" Y="-10" X="-40" />-->
-                <TranslateTransform x:Name="FlyOut" Y="0" X="0" />
+                <TranslateTransform x:Name="FlyOut" Y="-10" X="-10" />
             </Border.RenderTransform>
             <Border.Clip>
                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -48,7 +48,7 @@
                 </MultiBinding>
             </Border.Clip>
 
-            <Grid VerticalAlignment="Bottom">
+            <Grid VerticalAlignment="Bottom" Margin="10,10,0,0">
                 <!--<Grid.RenderTransform>
                     
                 </Grid.RenderTransform>-->
@@ -70,9 +70,7 @@
                 <!--<Grid Height="50" Width="70" Background="Purple" HorizontalAlignment="Right">
                     <TextBlock Text="Test Content!"/>
                 </Grid>-->
-
-                <!--Grid.Column="2" Grid.Row="2"-->
-                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="arrowToggle"  Width="25" Height="25">
+                <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="arrowToggle"  Width="25" Height="25" Margin="0,0,1,1">
                     <ToggleButton.Style>
                         <Style TargetType="ToggleButton">
                             <Setter Property="Background" Value="LightGray" />
@@ -80,7 +78,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                        <Border Background="{TemplateBinding Background}" CornerRadius="0,0,10,0">
+                                        <Border Background="{TemplateBinding Background}" CornerRadius="4,2,10,2">
                                             <ContentPresenter TextElement.Foreground="{TemplateBinding Foreground}" />
                                         </Border>
                                         <ControlTemplate.Triggers>
@@ -104,11 +102,11 @@
                             <BeginStoryboard>
                                 <Storyboard Completed="OnExpanded" >
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                        <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="0" />
+                                        <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="-10" />
                                         <!--Value="{Binding MyX}"-->
                                     </DoubleAnimationUsingKeyFrames>
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                        <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="0"/>
+                                        <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="-10"/>
                                         <!--Value="{Binding MyY}"-->
                                     </DoubleAnimationUsingKeyFrames>
                                 </Storyboard>

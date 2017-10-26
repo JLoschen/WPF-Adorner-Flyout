@@ -44,7 +44,6 @@ namespace FlyoutDemo
 
         #region DependencyProps
         public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(FrameworkElement), typeof(Flyout2), new UIPropertyMetadata(null));
-        
         public static readonly DependencyProperty MyYProperty = DependencyProperty.Register(nameof(MyY), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
         public static readonly DependencyProperty MyXProperty = DependencyProperty.Register(nameof(MyX), typeof(int), typeof(Flyout2), new PropertyMetadata(0));
 

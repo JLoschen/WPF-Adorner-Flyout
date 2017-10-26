@@ -9,9 +9,6 @@
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
-    <!--<Grid>
-        
-    </Grid>-->
     <!--ShowFilter="True"-->
     <local:FlyOutAdornerGrid IsFlyoutVisible="True" >
         <local:FlyOutAdornerGrid.PlaceHolder1>
@@ -31,9 +28,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Background="Blue" Grid.Row="0" Grid.Column="0">
-            <Button Content="Test2" Command="{Binding TestCommand}"/>
-        </Border>
+        <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
         <Border Background="Orange" Grid.Row="1" Grid.Column="0"/>
         <Border Background="Purple" Grid.Row="1" Grid.Column="1"/>

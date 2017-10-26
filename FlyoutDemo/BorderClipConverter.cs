@@ -16,7 +16,7 @@ namespace FlyoutDemo
                 var width = (double)values[0];
                 var height = (double)values[1];
 
-                if (width < Double.Epsilon || height < Double.Epsilon)
+                if (width < double.Epsilon || height < double.Epsilon)
                 {
                     return Geometry.Empty;
                 }
@@ -26,6 +26,8 @@ namespace FlyoutDemo
                 // Actually we need more complex geometry, when CornerRadius has different values.
                 // But let me not to take this into account, and simplify example for a common value.
                 var clip = new RectangleGeometry(new Rect(0, 0, width, height), radius.BottomRight, radius.BottomRight);
+                //var clip = new RectangleGeometry(/*new Rect(0, 0, width, height), radius.BottomRight, radius.BottomRight*/);
+                //var clip = new EllipseGeometry(new Point(35,35), 35,35);
                 clip.Freeze();
 
                 return clip;
