@@ -34,7 +34,7 @@
         </Grid.OpacityMask>-->
         <!--<TranslateTransform x:Name="FlyOut" Y="-30" X="-100" />-->
         <!--Height="55" Width="125"-->
-        <!--Height="{Binding BorderHeight}" Width="{Binding BorderWidth}"-->
+        
         <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" >
             <Border.RenderTransform>
                 <!--<TranslateTransform x:Name="FlyOut" Y="-10" X="-40" />-->
@@ -64,7 +64,9 @@
                 </Grid.ColumnDefinitions>-->
                 <!--<CheckBox IsChecked="{Binding ShowFilterChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="ShowHideFilterCheckBox" Content="Show Filter"  VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="0" Margin="0,0,3,2"/>-->
                 <!--, ElementName=control-->
-                <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right"/>
+            <!--DataContext="{RelativeSource AncestorType=Grid,AncestorLevel=2}"-->
+            <!--DataContext="{Binding MyDataContext}"-->
+            <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right"  />
                 <!--<Grid Height="50" Width="70" Background="Purple" HorizontalAlignment="Right">
                     <TextBlock Text="Test Content!"/>
                 </Grid>-->
