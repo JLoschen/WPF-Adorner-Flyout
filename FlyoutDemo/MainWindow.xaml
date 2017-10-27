@@ -129,7 +129,7 @@
         <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
         <Border Background="Orange" Grid.Row="1" Grid.Column="0"/>
-        <Border Background="White" Grid.Row="1" Grid.Column="1">
+        <Border Background="Purple" Grid.Row="1" Grid.Column="1">
             <!--<Button Content="TestButton"/>-->
 
             <!--<Rectangle RadiusX="20" RadiusY="20" Height="40">
@@ -143,15 +143,14 @@
                 </Rectangle.Fill>
                 <TextBlock Text="Test Text"/>
             </Rectangle>-->
-            <Border Background="LightGray" Height="40" CornerRadius="20" Width="60" >
+            <!--<Border Background="LightGray" Height="40" CornerRadius="20" Width="60" >
                 <Border.RenderTransform>
                     <RotateTransform CenterX="0" CenterY="0" Angle="45"></RotateTransform>
                 </Border.RenderTransform>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <!--<TextBlock Text="Test Text" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
                     <Path Style="{StaticResource ArrowStyle}" Margin="0,0,10,0"/>
                 </StackPanel>
-            </Border>
+            </Border>-->
         </Border>
     </local:FlyOutAdornerGrid>
 </Window>

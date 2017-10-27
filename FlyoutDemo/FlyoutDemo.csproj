@@ -76,17 +76,35 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BorderClipConverter.cs" />
+    <Compile Include="BottomLeftCornerFlyout.xaml.cs">
+      <DependentUpon>BottomLeftCornerFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BottomRightCornerFlyout.xaml.cs">
+      <DependentUpon>BottomRightCornerFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CornerFlyout.xaml.cs">
       <DependentUpon>CornerFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyout2.xaml.cs">
       <DependentUpon>Flyout2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FlyoutPlacement.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="TopFlyout.xaml.cs">
       <DependentUpon>TopFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TopRightCornerFlyout.xaml.cs">
+      <DependentUpon>TopRightCornerFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UIHelper.cs" />
+    <Page Include="BottomLeftCornerFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BottomRightCornerFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClearFilterVector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TopRightCornerFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -152,9 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="arrow 25x19.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

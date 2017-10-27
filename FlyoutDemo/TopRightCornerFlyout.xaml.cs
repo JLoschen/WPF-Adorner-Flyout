@@ -3,12 +3,11 @@ using System.Windows;
 
 namespace FlyoutDemo
 {
-    public partial class CornerFlyout
+    public partial class TopRightCornerFlyout 
     {
         private readonly Style _arrowButtonMouseOverStyle;
         private readonly Style _arrowButtonOpaqueStyle;
-
-        public CornerFlyout()
+        public TopRightCornerFlyout()
         {
             InitializeComponent();
             _arrowButtonMouseOverStyle = FindResource("OuterBorderStyle") as Style;
@@ -18,22 +17,11 @@ namespace FlyoutDemo
 
         private void OnExpanded(object sender, EventArgs e)
         {
-            //var rotate = arrow.RenderTransform as RotateTransform;
-
-            //if (rotate != null)
-            //{
-            //    rotate.Angle = 45;
-            //}
             OuterBorder.Style = _arrowButtonOpaqueStyle;
         }
 
         private void OnHidden(object sender, EventArgs e)
         {
-            //var rotate = arrow.RenderTransform as RotateTransform;
-            //if (rotate != null)
-            //{
-            //    rotate.Angle = -135;
-            //}
             OuterBorder.Style = _arrowButtonMouseOverStyle;
         }
     }
