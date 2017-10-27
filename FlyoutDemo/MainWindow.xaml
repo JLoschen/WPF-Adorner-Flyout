@@ -6,6 +6,92 @@
         xmlns:local="clr-namespace:FlyoutDemo"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <!--<Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ClipToBounds="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Rectangle RadiusX="20" RadiusY="30" Grid.RowSpan="2">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#872234" Offset="0"/>
+                                            <GradientStop Color="#872234" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle> 
+                            <Border Margin="5" CornerRadius="14,14,4,4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#C53550" Offset="0.1"/>
+                                            <GradientStop Color="#C43551" Offset="0.5"/>
+                                            <GradientStop Color="#C43551" Offset="0.9"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <ContentPresenter Grid.RowSpan="2"   
+                              x:Name="PrimaryContent"
+                              HorizontalAlignment="Center" VerticalAlignment="Center"
+                              Margin="{TemplateBinding Padding}" 
+                              Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" 
+                          />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="gold" />
+        </Style>-->
+        <Style TargetType="{x:Type Path}" x:Key="ArrowStyle">
+            <Setter Property="Data" Value="M0,0 L0,6 L3,3 Z"/>
+            <Setter Property="Fill" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="0" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=IsChecked}"
+                                                         Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
+                                                 By="180"     
+                                                    BeginTime="00:00:00.2"
+                                                    Duration="00:00:00.1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
+                                                    By="-180"
+                                                    BeginTime="00:00:00.2"
+                                                    Duration="00:00:00.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -43,6 +129,29 @@
         <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
         <Border Background="Orange" Grid.Row="1" Grid.Column="0"/>
-        <Border Background="Purple" Grid.Row="1" Grid.Column="1"/>
+        <Border Background="White" Grid.Row="1" Grid.Column="1">
+            <!--<Button Content="TestButton"/>-->
+
+            <!--<Rectangle RadiusX="20" RadiusY="20" Height="40">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Color="LightGray" Offset="0"/>
+                            <GradientStop Color="LightGray" Offset="0.9"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+                <TextBlock Text="Test Text"/>
+            </Rectangle>-->
+            <Border Background="LightGray" Height="40" CornerRadius="20" Width="60" >
+                <Border.RenderTransform>
+                    <RotateTransform CenterX="0" CenterY="0" Angle="45"></RotateTransform>
+                </Border.RenderTransform>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <!--<TextBlock Text="Test Text" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                    <Path Style="{StaticResource ArrowStyle}" Margin="0,0,10,0"/>
+                </StackPanel>
+            </Border>
+        </Border>
     </local:FlyOutAdornerGrid>
 </Window>

@@ -110,11 +110,26 @@ namespace FlyoutDemo
         {
             return GetCornerFlyout();
             //return GetTopFlyout();
+            //return GetFlyout2();
         }
 
-        private Flyout2 GetCornerFlyout()
+        private Flyout2 GetFlyout2()
         {
             var flyoutControl = new Flyout2
+            {
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                ClipToBounds = true,
+                DataContext = this
+            };
+
+            flyoutControl.Loaded += OnLoaded2;
+            return flyoutControl;
+        }
+
+        private CornerFlyout GetCornerFlyout()
+        {
+            var flyoutControl = new /*Flyout2*/CornerFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -160,6 +175,14 @@ namespace FlyoutDemo
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var flyout = sender as CornerFlyout;
+            if (flyout == null) return;
+            MyX = 31 - (int)flyout.ActualWidth;
+            MyY = 31 - (int)flyout.ActualHeight;
+            PlaceHolder1.DataContext = DataContext;
+        }
+        private void OnLoaded2(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyout2;
             if (flyout == null) return;

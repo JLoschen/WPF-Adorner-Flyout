@@ -76,6 +76,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BorderClipConverter.cs" />
+    <Compile Include="CornerFlyout.xaml.cs">
+      <DependentUpon>CornerFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Flyout2.xaml.cs">
       <DependentUpon>Flyout2.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
     </Compile>
     <Compile Include="UIHelper.cs" />
     <Page Include="ClearFilterVector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CornerFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
