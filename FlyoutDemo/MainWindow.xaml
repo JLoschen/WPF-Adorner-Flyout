@@ -16,8 +16,20 @@
                 <Label Content="Set in View!"/>
             </StackPanel>-->
             <Grid Height="70" Width="150" Background="Purple">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <!--<TextBlock Text="Test Content!"/>-->
-                <Button Content="Test Button" Command="{Binding TestCommand}"/>
+                <Border Background="Aqua" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button Content="Test Button" Command="{Binding TestCommand}" Grid.Row="1" Grid.Column="0"/>
+                <CheckBox Content="Do Stuff?" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom"/>
+                <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
             </Grid>
         </local:FlyOutAdornerGrid.PlaceHolder1>
         <Grid.ColumnDefinitions>

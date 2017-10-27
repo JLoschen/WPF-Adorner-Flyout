@@ -38,16 +38,16 @@
                         <RotateTransform Angle="90" />
                     </Setter.Value>
                 </Setter>
-                <!--<Style.Triggers>
+                <Style.Triggers>
                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=IsChecked}"
                                                          Value="True">
                         <DataTrigger.EnterActions>
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
-                                                                                     By="180"
-                                                                                     BeginTime="00:00:00.2"
-                                                                                     Duration="00:00:00.1" />
+                                                    By="180"
+                                                    BeginTime="00:00:00.2"
+                                                    Duration="00:00:00.1" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </DataTrigger.EnterActions>
@@ -55,19 +55,19 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
-                                                                                     By="-180"
-                                                                                     BeginTime="00:00:00.2"
-                                                                                     Duration="00:00:00.1"/>
+                                                    By="-180"
+                                                    BeginTime="00:00:00.2"
+                                                    Duration="00:00:00.1"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </DataTrigger.ExitActions>
                     </DataTrigger>
-                </Style.Triggers>-->
+                </Style.Triggers>
             </Style>
 
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1">
+    <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Center" >
         <Border.RenderTransform>
             <TranslateTransform x:Name="FlyOut" Y="{Binding MyY}" X="{Binding MyX}" />
         </Border.RenderTransform>
@@ -79,9 +79,13 @@
             </MultiBinding>
         </Border.Clip>
 
-        <Grid VerticalAlignment="Bottom" Margin="10,10,0,0">
-            <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right"  />
-            <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="arrowToggle"  Width="25" Height="25" Margin="0,0,1,1">
+        <Grid VerticalAlignment="Bottom" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="15"/>
+            </Grid.RowDefinitions>
+            <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right" />
+            <ToggleButton Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="arrowToggle" Height="15" Margin="1,0,1,1">
                 <ToggleButton.Style>
                     <Style TargetType="ToggleButton">
                         <Setter Property="Background" Value="LightGray" />

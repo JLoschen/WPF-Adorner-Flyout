@@ -108,14 +108,20 @@ namespace FlyoutDemo
 
         private FrameworkElement CreateContent()
         {
-            var flyoutControl = new /*Flyout2*/TopFlyout
+            return GetCornerFlyout();
+            //return GetTopFlyout();
+        }
+
+        private Flyout2 GetCornerFlyout()
+        {
+            var flyoutControl = new Flyout2
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
                 ClipToBounds = true,
                 DataContext = this
             };
-            
+
             flyoutControl.Loaded += OnLoaded;
 
             //Binding contentBinding = new Binding
@@ -130,9 +136,32 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
+        private TopFlyout GetTopFlyout()
+        {
+            var flyoutControl = new TopFlyout
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                ClipToBounds = true,
+                DataContext = this
+            };
+            
+            flyoutControl.Loaded += OnLoadedTop;
+            return flyoutControl;
+        }
+
+        private void OnLoadedTop(object sender, RoutedEventArgs e)
+        {
+            var flyout = sender as TopFlyout;
+            if (flyout == null) return;
+            //MyX = 25 - (int)flyout.ActualWidth;
+            MyY = 15 - (int)flyout.ActualHeight;
+            PlaceHolder1.DataContext = DataContext;
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as /*Flyout2*/TopFlyout;
+            var flyout = sender as Flyout2;
             if (flyout == null) return;
             MyX = 25 - (int)flyout.ActualWidth;
             MyY = 25 - (int)flyout.ActualHeight;
