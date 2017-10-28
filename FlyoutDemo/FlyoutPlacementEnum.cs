@@ -1,5 +1,4 @@
-﻿
-namespace FlyoutDemo
+﻿namespace FlyoutDemo
 {
     public enum FlyoutPlacement
     {

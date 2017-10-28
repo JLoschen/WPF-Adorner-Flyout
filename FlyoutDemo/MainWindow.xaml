@@ -73,8 +73,8 @@
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
                                                  By="180"     
-                                                    BeginTime="00:00:00.2"
-                                                    Duration="00:00:00.1" />
+                                                BeginTime="00:00:00.2"
+                                                Duration="00:00:00.1" />
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
@@ -96,7 +96,8 @@
         <local:MainViewModel/>
     </Window.DataContext>
     <!--ShowFilter="True"-->
-    <local:FlyOutAdornerGrid IsFlyoutVisible="True" >
+    <!--IsFlyoutVisible="True"-->
+    <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}">
         <local:FlyOutAdornerGrid.PlaceHolder1>
             <!--<StackPanel>
                 <Label Content="Set in View!"/>
@@ -128,8 +129,16 @@
         </Grid.RowDefinitions>
         <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
-        <Border Background="Orange" Grid.Row="1" Grid.Column="0"/>
+        <Border Background="Orange" Grid.Row="1" Grid.Column="0">
+            <CheckBox Content="Show Adorner" IsChecked="{Binding ShowAdorner}"/>
+        </Border>
         <Border Background="Purple" Grid.Row="1" Grid.Column="1">
+            <StackPanel>
+                <RadioButton GroupName="Location" Content="Top Left" IsChecked="{Binding IsTopLeft}"/>
+                <RadioButton GroupName="Location" Content="Top Right" IsChecked="{Binding IsTopRight}"/>
+                <RadioButton GroupName="Location" Content="Bottom Right" IsChecked="{Binding IsBottomRight}"/>
+                <RadioButton GroupName="Location" Content="Bottom Left" IsChecked="{Binding IsBottomLeft}"/>
+            </StackPanel>
             <!--<Button Content="TestButton"/>-->
 
             <!--<Rectangle RadiusX="20" RadiusY="20" Height="40">

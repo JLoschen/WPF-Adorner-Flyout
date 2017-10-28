@@ -11,7 +11,14 @@ namespace FlyoutDemo
         public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty MyYProperty = DependencyProperty.Register(nameof(MyY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty MyXProperty = DependencyProperty.Register(nameof(MyX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft));
+        public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
+
+        private static void OnFlyoutPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var flyoutAdornerGrid = d as FlyOutAdornerGrid;
+            //flyoutAdornerGrid?.ShowOrHideAdornerInternal();
+            flyoutAdornerGrid?.OnPlacementChanged();
+        }
 
         public FlyoutPlacement FlyoutPlacement
         {
@@ -47,6 +54,7 @@ namespace FlyoutDemo
         {
             FlyOutAdornerGrid c = (FlyOutAdornerGrid)d;
             c.ShowOrHideAdornerInternal();
+            //c.OnPlacementChanged();
         }
         #endregion
 
@@ -69,7 +77,7 @@ namespace FlyoutDemo
                 ShowAdornerInternal();
             };
 
-            ShowAdornerInternal();
+            //ShowAdornerInternal();
         }
 
         private void ShowOrHideAdornerInternal()
@@ -97,12 +105,12 @@ namespace FlyoutDemo
                 //var dg = UIHelper.TryFindParent<DataGrid>(this);
                 var dg = this;
 
-                if (dg != null && !ControlIsAdorned(dg))
+                if (dg != null /*&& !ControlIsAdorned(dg)*/)
                 {
-                    if (_adornerContent == null)
-                    {
+                    //if (_adornerContent == null)
+                    //{
                         _adornerContent = CreateContent();
-                    }
+                    //}
                     _adornedDataGrid = dg;
                     _adornerLayer = AdornerLayer.GetAdornerLayer(dg);
                 }
@@ -113,6 +121,44 @@ namespace FlyoutDemo
             _adornerLayer.Add(_adorner);
         }
 
+        public void OnPlacementChanged()
+        {
+            if (!IsFlyoutVisible) return;
+            //if (_adorner != null)
+            //{
+            //    // Already adorned.
+            //    return;
+            //}
+
+            //if (_adornerLayer == null)
+            //{
+            //var dg = UIHelper.TryFindParent<DataGrid>(this);
+            var dg = this;
+
+                //if (dg != null && !ControlIsAdorned(dg))
+                //{
+                    //if (_adornerContent == null)
+                    //{
+                        _adornerContent = CreateContent();
+                    //}
+                    _adornedDataGrid = dg;
+                    _adornerLayer = AdornerLayer.GetAdornerLayer(dg);
+                //}
+            //}
+
+            if (_adornerLayer == null) return;
+
+            if (_adorner != null)
+            {
+                _adornerLayer.Remove(_adorner);
+                _adorner.DisconnectChild();
+            }
+            
+            _adorner = new FrameworkElementAdorner(_adornerContent, _adornedDataGrid, AdornerPlacement.Inside, AdornerPlacement.Inside, /*AdornerX*/0, /*AdornerY*/0);
+            
+            _adornerLayer.Add(_adorner);
+        }
+
         private FrameworkElement CreateContent()
         {
             //return GetCornerFlyout();
@@ -120,7 +166,22 @@ namespace FlyoutDemo
             //return GetFlyout2();
             //return GetTopRightCornerFlyout();
             //return GetBottomRightCornerFlyout();
-            return GetBottomLeftCornerFlyout();
+            //return GetBottomLeftCornerFlyout();
+
+            switch (FlyoutPlacement)
+            {
+                case FlyoutPlacement.TopLeft:
+                return GetCornerFlyout();
+                case FlyoutPlacement.TopRight:
+                return GetTopRightCornerFlyout();
+                case FlyoutPlacement.BottomRight:
+                return GetBottomRightCornerFlyout();
+                case FlyoutPlacement.BottomLeft:
+                return GetBottomLeftCornerFlyout();
+                case FlyoutPlacement.Top:
+                return GetTopFlyout();
+            }
+            return GetCornerFlyout();
         }
 
         private Flyout2 GetFlyout2()
