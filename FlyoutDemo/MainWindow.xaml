@@ -98,7 +98,7 @@
     <!--ShowFilter="True"-->
     <!--IsFlyoutVisible="True"-->
     <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}">
-        <local:FlyOutAdornerGrid.PlaceHolder1>
+        <local:FlyOutAdornerGrid.FlyoutContent>
             <!--<StackPanel>
                 <Label Content="Set in View!"/>
             </StackPanel>-->
@@ -118,7 +118,7 @@
                 <CheckBox Content="Do Stuff?" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom"/>
                 <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
             </Grid>
-        </local:FlyOutAdornerGrid.PlaceHolder1>
+        </local:FlyOutAdornerGrid.FlyoutContent>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

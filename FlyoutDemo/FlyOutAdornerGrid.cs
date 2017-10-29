@@ -8,9 +8,9 @@ namespace FlyoutDemo
     {
         #region Dependency Properties
         public static readonly DependencyProperty IsFlyoutVisibleProperty = DependencyProperty.Register(nameof(IsFlyoutVisible), typeof(bool), typeof(FlyOutAdornerGrid), new FrameworkPropertyMetadata(IsAdornerVisible_PropertyChanged));
-        public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
-        public static readonly DependencyProperty MyYProperty = DependencyProperty.Register(nameof(MyY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        public static readonly DependencyProperty MyXProperty = DependencyProperty.Register(nameof(MyX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+        public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(nameof(FlyoutContent), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
+        public static readonly DependencyProperty HiddenYProperty = DependencyProperty.Register(nameof(HiddenY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+        public static readonly DependencyProperty HiddenXProperty = DependencyProperty.Register(nameof(HiddenX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty ExpandedYProperty = DependencyProperty.Register(nameof(ExpandedY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty ExpandedXProperty = DependencyProperty.Register(nameof(ExpandedX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
@@ -28,16 +28,16 @@ namespace FlyoutDemo
             set { SetValue(FlyoutPlacementProperty, value); }
         }
 
-        public int MyY
+        public int HiddenY
         {
-            get { return (int)GetValue(MyYProperty); }
-            set { SetValue(MyYProperty, value); }
+            get { return (int)GetValue(HiddenYProperty); }
+            set { SetValue(HiddenYProperty, value); }
         }
 
-        public int MyX
+        public int HiddenX
         {
-            get { return (int)GetValue(MyXProperty); }
-            set { SetValue(MyXProperty, value); }
+            get { return (int)GetValue(HiddenXProperty); }
+            set { SetValue(HiddenXProperty, value); }
         }
 
         public int ExpandedY
@@ -52,10 +52,10 @@ namespace FlyoutDemo
             set { SetValue(ExpandedXProperty, value); }
         }
 
-        public FrameworkElement PlaceHolder1
+        public FrameworkElement FlyoutContent
         {
-            get { return (FrameworkElement)GetValue(PlaceHolder1Property); }
-            set { SetValue(PlaceHolder1Property, value); }
+            get { return (FrameworkElement)GetValue(FlyoutContentProperty); }
+            set { SetValue(FlyoutContentProperty, value); }
         }
 
         public bool IsFlyoutVisible
@@ -296,61 +296,61 @@ namespace FlyoutDemo
         {
             var flyout = sender as Flyouts.BottomLeftCornerFlyout;
             if (flyout == null) return;
-            MyY = (int)flyout.ActualHeight - 31;
-            MyX = 31 - (int)flyout.ActualWidth;
+            HiddenY = (int)flyout.ActualHeight - 31;
+            HiddenX = 31 - (int)flyout.ActualWidth;
             ExpandedX = -5;
             ExpandedY = 5;
-            PlaceHolder1.DataContext = DataContext;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private void OnLoadedTop(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyouts.TopFlyout;
             if (flyout == null) return;
-            MyY = 15 - (int)flyout.ActualHeight;
-            PlaceHolder1.DataContext = DataContext;
+            HiddenY = 15 - (int)flyout.ActualHeight;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyouts.CornerFlyout;
             if (flyout == null) return;
-            MyX = 31 - (int)flyout.ActualWidth;
-            MyY = 31 - (int)flyout.ActualHeight;
+            HiddenX = 31 - (int)flyout.ActualWidth;
+            HiddenY = 31 - (int)flyout.ActualHeight;
             ExpandedX = -5;
             ExpandedY = -5;
-            PlaceHolder1.DataContext = DataContext;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private void OnLoadedTopRight(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyouts.TopRightCornerFlyout;
             if (flyout == null) return;
-            MyY = 31 - (int)flyout.ActualHeight;
-            MyX = (int)flyout.ActualWidth - 31;
+            HiddenY = 31 - (int)flyout.ActualHeight;
+            HiddenX = (int)flyout.ActualWidth - 31;
             ExpandedX = 5;
             ExpandedY = -5;
-            PlaceHolder1.DataContext = DataContext;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private void OnLoadedBottomRight(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyouts.BottomRightCornerFlyout;
             if (flyout == null) return;
-            MyY = (int)flyout.ActualHeight - 31;
-            MyX = (int)flyout.ActualWidth - 31;
+            HiddenY = (int)flyout.ActualHeight - 31;
+            HiddenX = (int)flyout.ActualWidth - 31;
             ExpandedX = 5;
             ExpandedY = 5;
-            PlaceHolder1.DataContext = DataContext;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private void OnLoaded2(object sender, RoutedEventArgs e)
         {
             var flyout = sender as Flyout2;
             if (flyout == null) return;
-            MyX = 25 - (int)flyout.ActualWidth;
-            MyY = 25 - (int)flyout.ActualHeight;
-            PlaceHolder1.DataContext = DataContext;
+            HiddenX = 25 - (int)flyout.ActualWidth;
+            HiddenY = 25 - (int)flyout.ActualHeight;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private bool ControlIsAdorned(UIElement control)

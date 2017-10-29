@@ -67,7 +67,7 @@
 
     <Grid>
         <Grid.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding MyY}" X="{Binding MyX}" />
+            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
         </Grid.RenderTransform>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -124,10 +124,10 @@
                     <BeginStoryboard>
                         <Storyboard Completed="OnHidden" >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyY}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyX}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenX}" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
@@ -143,7 +143,7 @@
                 </MultiBinding>
             </Border.Clip>
 
-            <ContentPresenter  Content="{Binding PlaceHolder1}" HorizontalAlignment="Left"  />
+            <ContentPresenter  Content="{Binding FlyoutContent}" HorizontalAlignment="Left"  />
         </Border>
     </Grid>
 </UserControl>

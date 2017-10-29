@@ -66,7 +66,7 @@
     </UserControl.Resources>
     <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Center" >
         <Border.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding MyY}" X="{Binding MyX}" />
+            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
         </Border.RenderTransform>
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -81,7 +81,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
-            <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right" />
+            <ContentPresenter Grid.Row="0" Content="{Binding FlyoutContent}" HorizontalAlignment="Right" />
             <ToggleButton Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="arrowToggle" Height="15" Margin="1,0,1,1">
                 <ToggleButton.Style>
                     <Style TargetType="ToggleButton">
@@ -128,7 +128,7 @@
                         <BeginStoryboard>
                             <Storyboard Completed="OnHidden" >
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyY}" />
+                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                                 </DoubleAnimationUsingKeyFrames>
                                 <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyX}" />

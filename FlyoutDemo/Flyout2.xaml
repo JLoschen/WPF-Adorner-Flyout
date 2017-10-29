@@ -8,9 +8,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FlyoutDemo;component/ClearFilterVector.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Border" x:Key="OuterBorderStyle">
                 <Setter Property="Opacity" Value="0.7"/>
                 <Style.Triggers>
@@ -69,7 +66,7 @@
     </UserControl.Resources>
     <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1">
         <Border.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding MyY}" X="{Binding MyX}" />
+            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
         </Border.RenderTransform>
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -80,7 +77,7 @@
         </Border.Clip>
 
         <Grid VerticalAlignment="Bottom" Margin="10,10,0,0">
-            <ContentPresenter Grid.Row="0" Content="{Binding PlaceHolder1}" HorizontalAlignment="Right"  />
+            <ContentPresenter Grid.Row="0" Content="{Binding FlyoutContent}" HorizontalAlignment="Right"  />
             <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="arrowToggle"  Width="25" Height="25" Margin="0,0,1,1">
                 <ToggleButton.Style>
                     <Style TargetType="ToggleButton">
@@ -127,10 +124,10 @@
                         <BeginStoryboard>
                             <Storyboard Completed="OnHidden" >
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyY}" />
+                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                                 </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding MyX}" />
+                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenX}" />
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                         </BeginStoryboard>
