@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FlyoutDemo.TopFlyout"
+﻿<UserControl x:Class="FlyoutDemo.Flyouts.TopFlyout"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,9 +8,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FlyoutDemo;component/ClearFilterVector.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Border" x:Key="OuterBorderStyle">
                 <Setter Property="Opacity" Value="0.7"/>
                 <Style.Triggers>

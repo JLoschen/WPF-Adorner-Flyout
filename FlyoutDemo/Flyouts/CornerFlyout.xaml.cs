@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows;
 
-namespace FlyoutDemo
+namespace FlyoutDemo.Flyouts
 {
-    public partial class TopRightCornerFlyout 
+    public partial class CornerFlyout
     {
         private readonly Style _arrowButtonMouseOverStyle;
         private readonly Style _arrowButtonOpaqueStyle;
-        public TopRightCornerFlyout()
+
+        public CornerFlyout()
         {
             InitializeComponent();
             _arrowButtonMouseOverStyle = FindResource("OuterBorderStyle") as Style;

@@ -35,11 +35,6 @@ namespace FlyoutDemo
             set{ Set(ref _showAdorner, value); } 
         } 
         private bool _showAdorner;
-        
-        //private bool ResetFlyoutLocation()
-        //{
-
-        //}
 
         public bool IsTopLeft 
         { 

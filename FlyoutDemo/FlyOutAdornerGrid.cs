@@ -11,6 +11,8 @@ namespace FlyoutDemo
         public static readonly DependencyProperty PlaceHolder1Property = DependencyProperty.Register(nameof(PlaceHolder1), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty MyYProperty = DependencyProperty.Register(nameof(MyY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty MyXProperty = DependencyProperty.Register(nameof(MyX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+        public static readonly DependencyProperty ExpandedYProperty = DependencyProperty.Register(nameof(ExpandedY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
+        public static readonly DependencyProperty ExpandedXProperty = DependencyProperty.Register(nameof(ExpandedX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
 
         private static void OnFlyoutPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -36,6 +38,18 @@ namespace FlyoutDemo
         {
             get { return (int)GetValue(MyXProperty); }
             set { SetValue(MyXProperty, value); }
+        }
+
+        public int ExpandedY
+        {
+            get { return (int)GetValue(ExpandedYProperty); }
+            set { SetValue(ExpandedYProperty, value); }
+        }
+
+        public int ExpandedX
+        {
+            get { return (int)GetValue(ExpandedXProperty); }
+            set { SetValue(ExpandedXProperty, value); }
         }
 
         public FrameworkElement PlaceHolder1
@@ -198,9 +212,9 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
-        private BottomRightCornerFlyout GetBottomRightCornerFlyout()
+        private Flyouts.BottomRightCornerFlyout GetBottomRightCornerFlyout()
         {
-            var flyoutControl = new BottomRightCornerFlyout
+            var flyoutControl = new Flyouts.BottomRightCornerFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -212,9 +226,9 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
-        private BottomLeftCornerFlyout GetBottomLeftCornerFlyout()
+        private Flyouts.BottomLeftCornerFlyout GetBottomLeftCornerFlyout()
         {
-            var flyoutControl = new BottomLeftCornerFlyout
+            var flyoutControl = new Flyouts.BottomLeftCornerFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Bottom,
@@ -226,9 +240,9 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
-        private TopRightCornerFlyout GetTopRightCornerFlyout()
+        private Flyouts.TopRightCornerFlyout GetTopRightCornerFlyout()
         {
-            var flyoutControl = new TopRightCornerFlyout
+            var flyoutControl = new Flyouts.TopRightCornerFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -240,9 +254,9 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
-        private CornerFlyout GetCornerFlyout()
+        private Flyouts.CornerFlyout GetCornerFlyout()
         {
-            var flyoutControl = new /*Flyout2*/CornerFlyout
+            var flyoutControl = new /*Flyout2*/Flyouts.CornerFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -264,9 +278,9 @@ namespace FlyoutDemo
             return flyoutControl;
         }
 
-        private TopFlyout GetTopFlyout()
+        private Flyouts.TopFlyout GetTopFlyout()
         {
-            var flyoutControl = new TopFlyout
+            var flyoutControl = new Flyouts.TopFlyout
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
@@ -280,16 +294,18 @@ namespace FlyoutDemo
         
         private void OnLoadedBottomLeft(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as BottomLeftCornerFlyout;
+            var flyout = sender as Flyouts.BottomLeftCornerFlyout;
             if (flyout == null) return;
             MyY = (int)flyout.ActualHeight - 31;
             MyX = 31 - (int)flyout.ActualWidth;
+            ExpandedX = -5;
+            ExpandedY = 5;
             PlaceHolder1.DataContext = DataContext;
         }
 
         private void OnLoadedTop(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as TopFlyout;
+            var flyout = sender as Flyouts.TopFlyout;
             if (flyout == null) return;
             MyY = 15 - (int)flyout.ActualHeight;
             PlaceHolder1.DataContext = DataContext;
@@ -297,29 +313,34 @@ namespace FlyoutDemo
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as CornerFlyout;
+            var flyout = sender as Flyouts.CornerFlyout;
             if (flyout == null) return;
             MyX = 31 - (int)flyout.ActualWidth;
             MyY = 31 - (int)flyout.ActualHeight;
+            ExpandedX = -5;
+            ExpandedY = -5;
             PlaceHolder1.DataContext = DataContext;
         }
 
         private void OnLoadedTopRight(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as TopRightCornerFlyout;
+            var flyout = sender as Flyouts.TopRightCornerFlyout;
             if (flyout == null) return;
             MyY = 31 - (int)flyout.ActualHeight;
             MyX = (int)flyout.ActualWidth - 31;
+            ExpandedX = 5;
+            ExpandedY = -5;
             PlaceHolder1.DataContext = DataContext;
         }
 
         private void OnLoadedBottomRight(object sender, RoutedEventArgs e)
         {
-            var flyout = sender as BottomRightCornerFlyout;
+            var flyout = sender as Flyouts.BottomRightCornerFlyout;
             if (flyout == null) return;
             MyY = (int)flyout.ActualHeight - 31;
             MyX = (int)flyout.ActualWidth - 31;
-            //MyY = MyX = 15;
+            ExpandedX = 5;
+            ExpandedY = 5;
             PlaceHolder1.DataContext = DataContext;
         }
 

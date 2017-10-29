@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace FlyoutDemo
+namespace FlyoutDemo.Flyouts
 {
     public partial class BottomRightCornerFlyout 
     {

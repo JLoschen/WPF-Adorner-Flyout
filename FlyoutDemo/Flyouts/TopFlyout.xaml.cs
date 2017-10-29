@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Windows;
 
-namespace FlyoutDemo
+namespace FlyoutDemo.Flyouts
 {
-    public partial class BottomLeftCornerFlyout 
+    public partial class TopFlyout 
     {
         private readonly Style _arrowButtonMouseOverStyle;
         private readonly Style _arrowButtonOpaqueStyle;
-        public BottomLeftCornerFlyout()
+
+        public TopFlyout()
         {
             InitializeComponent();
-            _arrowButtonMouseOverStyle = FindResource("OuterBorderStyle") as Style;
-            _arrowButtonOpaqueStyle = FindResource("OuterBorderOpaqueStyle") as Style;
-            OuterBorder.Style = _arrowButtonMouseOverStyle;
         }
 
         private void OnExpanded(object sender, EventArgs e)
@@ -26,4 +24,3 @@ namespace FlyoutDemo
         }
     }
 }
-
