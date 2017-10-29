@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
+             xmlns:local="clr-namespace:FlyoutDemo.Flyouts"
+             xmlns:converters="clr-namespace:FlyoutDemo.Flyouts.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
+            <converters:LocationToHandleHorizontalAlignmentConverter x:Key="LocationToHorizontalAlignmentConverter"/>
+            <converters:LocationToHandleVerticalAlignmentConverter x:Key="LocationToVerticalAlignmentConverter"/>
             <!--The 2 styles below are assigned in code behind in event handlers-->
             <Style TargetType="Border" x:Key="OuterBorderStyle">
                 <Setter Property="Opacity" Value="0.7"/>
@@ -64,7 +68,11 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-
+    <!--<UserControl.HorizontalAlignment>
+        <Binding Path="FlyoutPlacement"
+             Converter="{StaticResource MyConverterReference}"/>
+    </UserControl.HorizontalAlignment>-->
+    
     <Grid>
         <Grid.RenderTransform>
             <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
@@ -77,7 +85,8 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="arrowToggle"  
+        <ToggleButton HorizontalAlignment="{Binding FlyoutPlacement,Converter={StaticResource LocationToHorizontalAlignmentConverter}}"
+                      VerticalAlignment="{Binding FlyoutPlacement, Converter={StaticResource LocationToVerticalAlignmentConverter}}"  x:Name="arrowToggle"  
                       Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton">
@@ -88,7 +97,8 @@
                             <ControlTemplate TargetType="{x:Type ToggleButton}">
                                 <Border Background="{TemplateBinding Background}" CornerRadius="18" Width="60" Height="36" >
                                     <Border.LayoutTransform>
-                                        <RotateTransform CenterX="0" CenterY="0" Angle="-45"/>
+                                        <!-- -45 -->
+                                        <RotateTransform CenterX="0" CenterY="0" Angle="{Binding HandleAngle}"/>
                                     </Border.LayoutTransform>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Path Style="{StaticResource ArrowStyle}" Margin="0,0,10,0" x:Name="arrow" />

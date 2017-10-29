@@ -89,6 +89,8 @@
       <DependentUpon>Flyout2.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlyoutPlacementEnum.cs" />
+    <Compile Include="Flyouts\LocationToHorizontalAlignmentConverter.cs" />
+    <Compile Include="Flyouts\LocationToVerticalAlignmentConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Flyouts\TopFlyout.xaml.cs">
       <DependentUpon>TopFlyout.xaml</DependentUpon>
