@@ -10,9 +10,10 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:LocationToHandleHorizontalAlignmentConverter x:Key="LocationToHorizontalAlignmentConverter"/>
-            <converters:LocationToHandleVerticalAlignmentConverter x:Key="LocationToVerticalAlignmentConverter"/>
-            
+            <converters:LocationToHandleHorizontalAlignmentConverter x:Key="LocationToHandleHorizontalAlignmentConverter"/>
+            <converters:LocationToHandleVerticalAlignmentConverter x:Key="LocationToHandleVerticalAlignmentConverter"/>
+            <converters:LocationToFlyoutHorizontalAlignmentConverter x:Key="LocationToFlyoutHorizontalAlignmentConverter"/>
+            <converters:LocationToFlyoutVerticalAlignmentConverter x:Key="LocationToFlyoutVerticalAlignmentConverter"/>
             <!--The 2 styles below are assigned in code behind in event handlers-->
             <Style TargetType="Border" x:Key="OuterBorderStyle">
                 <Setter Property="Opacity" Value="0.7"/>
@@ -69,6 +70,12 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
+    <UserControl.HorizontalAlignment>
+        <Binding Path="FlyoutPlacement" Converter="{StaticResource LocationToFlyoutHorizontalAlignmentConverter}"/>
+    </UserControl.HorizontalAlignment>
+    <UserControl.VerticalAlignment>
+        <Binding Path="FlyoutPlacement" Converter="{StaticResource LocationToFlyoutVerticalAlignmentConverter}"/>
+    </UserControl.VerticalAlignment>
 
     <Grid>
         <Grid.RenderTransform>
@@ -82,8 +89,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="{Binding FlyoutPlacement,Converter={StaticResource LocationToHorizontalAlignmentConverter}}"
-                      VerticalAlignment="{Binding FlyoutPlacement, Converter={StaticResource LocationToVerticalAlignmentConverter}}" 
+        <ToggleButton HorizontalAlignment="{Binding FlyoutPlacement,Converter={StaticResource LocationToHandleHorizontalAlignmentConverter}}"
+                      VerticalAlignment="{Binding FlyoutPlacement, Converter={StaticResource LocationToHandleVerticalAlignmentConverter}}" 
                       x:Name="arrowToggle" Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton">

@@ -82,6 +82,8 @@
     <Compile Include="Flyouts\BottomRightCornerFlyout.xaml.cs">
       <DependentUpon>BottomRightCornerFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Flyouts\Converters\LocationToFlyoutHorizontalAlignmentConverter.cs" />
+    <Compile Include="Flyouts\Converters\LocationToFlyoutVerticalAlignmentConverter.cs" />
     <Compile Include="Flyouts\CornerFlyout.xaml.cs">
       <DependentUpon>CornerFlyout.xaml</DependentUpon>
     </Compile>
@@ -89,8 +91,8 @@
       <DependentUpon>Flyout2.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlyoutPlacementEnum.cs" />
-    <Compile Include="Flyouts\LocationToHorizontalAlignmentConverter.cs" />
-    <Compile Include="Flyouts\LocationToVerticalAlignmentConverter.cs" />
+    <Compile Include="Flyouts\Converters\LocationToHandleHorizontalAlignmentConverter.cs" />
+    <Compile Include="Flyouts\Converters\LocationToHandleVerticalAlignmentConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Flyouts\TopFlyout.xaml.cs">
       <DependentUpon>TopFlyout.xaml</DependentUpon>

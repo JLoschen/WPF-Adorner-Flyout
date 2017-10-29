@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace FlyoutDemo.Flyouts.Converters
 {
-    public class LocationToHorizontalAlignmentConverter : IValueConverter
+    public class LocationToFlyoutHorizontalAlignmentConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

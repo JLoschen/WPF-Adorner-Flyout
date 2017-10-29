@@ -193,15 +193,15 @@ namespace FlyoutDemo
             switch (FlyoutPlacement)
             {
                 case FlyoutPlacement.TopLeft:
-                return GetCornerFlyout();
+                    return GetCornerFlyout();
                 case FlyoutPlacement.TopRight:
-                return GetTopRightCornerFlyout();
+                    return GetTopRightCornerFlyout();
                 case FlyoutPlacement.BottomRight:
-                return GetBottomRightCornerFlyout();
+                    return GetBottomRightCornerFlyout();
                 case FlyoutPlacement.BottomLeft:
-                return GetBottomLeftCornerFlyout();
+                    return GetBottomLeftCornerFlyout();
                 case FlyoutPlacement.Top:
-                return GetTopFlyout();
+                    return GetTopFlyout();
             }
             return GetCornerFlyout();
         }
@@ -252,8 +252,8 @@ namespace FlyoutDemo
         {
             var flyoutControl = new TopRightCornerFlyout
             {
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Top,
+                //HorizontalAlignment = HorizontalAlignment.Right,
+                //VerticalAlignment = VerticalAlignment.Top,
                 ClipToBounds = true,
                 DataContext = this
             };
@@ -266,8 +266,8 @@ namespace FlyoutDemo
         {
             var flyoutControl = new CornerFlyout
             {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
+                //HorizontalAlignment = HorizontalAlignment.Left,
+                //VerticalAlignment = VerticalAlignment.Top,
                 ClipToBounds = true,
                 DataContext = this
             };
