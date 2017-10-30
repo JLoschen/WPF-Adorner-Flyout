@@ -1,8 +1,8 @@
 ﻿namespace FlyoutDemo.Flyouts
 {
-    public partial class BottomRightCornerFlyout 
+    public partial class TopLeftCornerFlyout
     {
-        public BottomRightCornerFlyout()
+        public TopLeftCornerFlyout()
         {
             InitializeComponent();
         }

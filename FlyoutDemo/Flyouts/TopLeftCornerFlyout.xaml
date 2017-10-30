@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="FlyoutDemo.Flyouts.CornerFlyout"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="FlyoutDemo.Flyouts.TopLeftCornerFlyout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
-             xmlns:converters="clr-namespace:FlyoutDemo.Flyouts.Converters"
              mc:Ignorable="d"
              ClipToBounds="True"
              HorizontalAlignment="Left"
@@ -12,22 +11,6 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:LocationToHandleHorizontalAlignmentConverter x:Key="LocationToHandleHorizontalAlignmentConverter"/>
-            <converters:LocationToHandleVerticalAlignmentConverter x:Key="LocationToHandleVerticalAlignmentConverter"/>
-            <converters:LocationToFlyoutHorizontalAlignmentConverter x:Key="LocationToFlyoutHorizontalAlignmentConverter"/>
-            <converters:LocationToFlyoutVerticalAlignmentConverter x:Key="LocationToFlyoutVerticalAlignmentConverter"/>
-            <!--The 2 styles below are assigned in code behind in event handlers-->
-            <Style TargetType="Border" x:Key="OuterBorderStyle">
-                <Setter Property="Opacity" Value="0.7"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Opacity" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="Border" x:Key="OuterBorderOpaqueStyle">
-                <Setter Property="Opacity" Value="1"/>
-            </Style>
             <flyoutDemo:BorderClipConverter x:Key="BorderClipConverter"/>
             <Style TargetType="{x:Type Path}" x:Key="ArrowStyle">
                 <Setter Property="Data" Value="M0,0 L0,6 L3,3 Z"/>
@@ -85,8 +68,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="{Binding FlyoutPlacement,Converter={StaticResource LocationToHandleHorizontalAlignmentConverter}}"
-                      VerticalAlignment="{Binding FlyoutPlacement, Converter={StaticResource LocationToHandleVerticalAlignmentConverter}}" 
+        <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" 
                       x:Name="arrowToggle" Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton">
@@ -97,8 +79,7 @@
                             <ControlTemplate TargetType="{x:Type ToggleButton}">
                                 <Border Background="{TemplateBinding Background}"  CornerRadius="18" Width="60" Height="36" >
                                     <Border.LayoutTransform>
-                                        <!--45-->
-                                        <RotateTransform CenterX="0" CenterY="0" Angle="{Binding HandleAngle}"/>
+                                        <RotateTransform CenterX="0" CenterY="0" Angle="45"/>
                                     </Border.LayoutTransform>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Path Style="{StaticResource ArrowStyle}" Margin="0,0,10,0" x:Name="arrow" />
@@ -117,12 +98,12 @@
             <ToggleButton.Triggers>
                 <EventTrigger RoutedEvent="ToggleButton.Checked">
                     <BeginStoryboard>
-                        <Storyboard Completed="OnExpanded" >
+                        <Storyboard >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding ExpandedY}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="-5" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="{Binding ExpandedX}"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="-5"/>
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
@@ -130,7 +111,7 @@
 
                 <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                     <BeginStoryboard>
-                        <Storyboard Completed="OnHidden" >
+                        <Storyboard >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                 <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                             </DoubleAnimationUsingKeyFrames>
@@ -155,4 +136,3 @@
         </Border>
     </Grid>
 </UserControl>
-

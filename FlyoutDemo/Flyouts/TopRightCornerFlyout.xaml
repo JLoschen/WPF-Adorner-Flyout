@@ -4,16 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
-             xmlns:flyouts="clr-namespace:FlyoutDemo.Flyouts"
-             xmlns:converters="clr-namespace:FlyoutDemo.Flyouts.Converters"
              mc:Ignorable="d"
+             ClipToBounds="True"
+             HorizontalAlignment="Right"
+             VerticalAlignment="Top"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:LocationToHandleHorizontalAlignmentConverter x:Key="LocationToHandleHorizontalAlignmentConverter"/>
-            <converters:LocationToHandleVerticalAlignmentConverter x:Key="LocationToHandleVerticalAlignmentConverter"/>
-            <converters:LocationToFlyoutHorizontalAlignmentConverter x:Key="LocationToFlyoutHorizontalAlignmentConverter"/>
-            <converters:LocationToFlyoutVerticalAlignmentConverter x:Key="LocationToFlyoutVerticalAlignmentConverter"/>
             <!--The 2 styles below are assigned in code behind in event handlers-->
             <Style TargetType="Border" x:Key="OuterBorderStyle">
                 <Setter Property="Opacity" Value="0.7"/>
@@ -70,12 +67,6 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <UserControl.HorizontalAlignment>
-        <Binding Path="FlyoutPlacement" Converter="{StaticResource LocationToFlyoutHorizontalAlignmentConverter}"/>
-    </UserControl.HorizontalAlignment>
-    <UserControl.VerticalAlignment>
-        <Binding Path="FlyoutPlacement" Converter="{StaticResource LocationToFlyoutVerticalAlignmentConverter}"/>
-    </UserControl.VerticalAlignment>
 
     <Grid>
         <Grid.RenderTransform>
@@ -89,9 +80,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="{Binding FlyoutPlacement,Converter={StaticResource LocationToHandleHorizontalAlignmentConverter}}"
-                      VerticalAlignment="{Binding FlyoutPlacement, Converter={StaticResource LocationToHandleVerticalAlignmentConverter}}"
-                      x:Name="arrowToggle" Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <ToggleButton x:Name="arrowToggle" Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton">
                     <Setter Property="Background" Value="LightGray" />
@@ -101,8 +90,7 @@
                             <ControlTemplate TargetType="{x:Type ToggleButton}">
                                 <Border Background="{TemplateBinding Background}"  CornerRadius="18" Width="60" Height="36" >
                                     <Border.LayoutTransform>
-                                        <!--135-->
-                                        <RotateTransform CenterX="0" CenterY="0" Angle="{Binding HandleAngle}"/>
+                                        <RotateTransform CenterX="0" CenterY="0" Angle="135"/>
                                     </Border.LayoutTransform>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                         <Path Style="{StaticResource ArrowStyle}" Margin="0,0,10,0" x:Name="arrow" />
@@ -121,12 +109,12 @@
             <ToggleButton.Triggers>
                 <EventTrigger RoutedEvent="ToggleButton.Checked">
                     <BeginStoryboard>
-                        <Storyboard Completed="OnExpanded" >
+                        <Storyboard >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding ExpandedY}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="-5" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="{Binding ExpandedX}"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"   Value="5"/>
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
@@ -134,7 +122,7 @@
 
                 <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                     <BeginStoryboard>
-                        <Storyboard Completed="OnHidden" >
+                        <Storyboard >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                 <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                             </DoubleAnimationUsingKeyFrames>
