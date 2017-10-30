@@ -82,23 +82,16 @@
     <Compile Include="Flyouts\BottomRightCornerFlyout.xaml.cs">
       <DependentUpon>BottomRightCornerFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Flyouts\Converters\LocationToFlyoutHorizontalAlignmentConverter.cs" />
-    <Compile Include="Flyouts\Converters\LocationToFlyoutVerticalAlignmentConverter.cs" />
+    <Compile Include="Flyouts\RightFlyout.xaml.cs">
+      <DependentUpon>RightFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Flyouts\TopLeftCornerFlyout.xaml.cs">
       <DependentUpon>TopLeftCornerFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Flyouts\CornerFlyout.xaml.cs">
-      <DependentUpon>CornerFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyout2.xaml.cs">
       <DependentUpon>Flyout2.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlyoutPlacementEnum.cs" />
-    <Compile Include="Flyouts\Converters\LocationToHandleHorizontalAlignmentConverter.cs" />
-    <Compile Include="Flyouts\Converters\LocationToHandleVerticalAlignmentConverter.cs" />
-    <Compile Include="CornerHandleButton.xaml.cs">
-      <DependentUpon>CornerHandleButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Flyouts\TopFlyout.xaml.cs">
       <DependentUpon>TopFlyout.xaml</DependentUpon>
@@ -107,6 +100,10 @@
       <DependentUpon>TopRightCornerFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIHelper.cs" />
+    <Page Include="ArrowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Flyouts\BottomLeftCornerFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,19 +112,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Flyouts\RightFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Flyouts\TopLeftCornerFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Flyouts\CornerFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Flyout2.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CornerHandleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

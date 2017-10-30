@@ -49,6 +49,19 @@ namespace FlyoutDemo
         } 
         private bool _isTopLeft;
 
+        public bool IsLeft
+        {
+            get { return _isLeft; }
+            set
+            {
+                if (Set(ref _isLeft, value) && _isLeft)
+                {
+                    FlyoutLocation = FlyoutPlacement.Left;
+                }
+            }
+        }
+        private bool _isLeft;
+
         public bool IsTopRight 
         { 
             get{ return _isTopRight; }
@@ -62,6 +75,19 @@ namespace FlyoutDemo
         } 
         private bool _isTopRight;
 
+        public bool IsTop
+        {
+            get { return _isTop; }
+            set
+            {
+                if (Set(ref _isTop, value) && _isTop)
+                {
+                    FlyoutLocation = FlyoutPlacement.Top;
+                }
+            }
+        }
+        private bool _isTop;
+
         public bool IsBottomRight 
         { 
             get{ return _isBottomRight; }
@@ -74,7 +100,20 @@ namespace FlyoutDemo
             } 
         } 
         private bool _isBottomRight;
-    
+
+        public bool IsRight
+        {
+            get { return _isRight; }
+            set
+            {
+                if (Set(ref _isRight, value) && _isRight)
+                {
+                    FlyoutLocation = FlyoutPlacement.Right;
+                }
+            }
+        }
+        private bool _isRight;
+
         public bool IsBottomLeft 
         { 
             get{ return _isBottomLeft; }
@@ -87,5 +126,18 @@ namespace FlyoutDemo
             } 
         } 
         private bool _isBottomLeft;
+
+        public bool IsBottom
+        {
+            get { return _isBottom; }
+            set
+            {
+                if (Set(ref _isBottom, value) && _isBottom)
+                {
+                    FlyoutLocation = FlyoutPlacement.Bottom;
+                }
+            }
+        }
+        private bool _isBottom;
     }
 }

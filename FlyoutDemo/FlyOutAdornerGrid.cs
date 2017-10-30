@@ -12,9 +12,6 @@ namespace FlyoutDemo
         public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(nameof(FlyoutContent), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty HiddenYProperty = DependencyProperty.Register(nameof(HiddenY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty HiddenXProperty = DependencyProperty.Register(nameof(HiddenX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        public static readonly DependencyProperty ExpandedYProperty = DependencyProperty.Register(nameof(ExpandedY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        public static readonly DependencyProperty ExpandedXProperty = DependencyProperty.Register(nameof(ExpandedX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        //public static readonly DependencyProperty HandleAngleProperty = DependencyProperty.Register(nameof(HandleAngle), typeof(double), typeof(FlyOutAdornerGrid), new PropertyMetadata(0D));
         public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
 
         private static void OnFlyoutPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -41,24 +38,6 @@ namespace FlyoutDemo
             get { return (int)GetValue(HiddenXProperty); }
             set { SetValue(HiddenXProperty, value); }
         }
-
-        public int ExpandedY
-        {
-            get { return (int)GetValue(ExpandedYProperty); }
-            set { SetValue(ExpandedYProperty, value); }
-        }
-
-        public int ExpandedX
-        {
-            get { return (int)GetValue(ExpandedXProperty); }
-            set { SetValue(ExpandedXProperty, value); }
-        }
-
-        //public double HandleAngle
-        //{
-        //    get { return (double)GetValue(HandleAngleProperty); }
-        //    set { SetValue(HandleAngleProperty, value); }
-        //}
 
         public FrameworkElement FlyoutContent
         {
@@ -338,9 +317,6 @@ namespace FlyoutDemo
             var adorners = layer.GetAdorners(control);
             return adorners != null && adorners.Length > 0;
         }
-
-        public int MyRowSpan { get; set; } = 2;
-        public int MyColumnSpan { get; set; } = 2;
 
         private void HideAdornerInternal()
         {

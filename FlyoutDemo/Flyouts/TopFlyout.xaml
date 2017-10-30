@@ -3,70 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
              mc:Ignorable="d"
+             ClipToBounds="True" HorizontalAlignment="Center"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Border" x:Key="OuterBorderStyle">
-                <Setter Property="Opacity" Value="0.7"/>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Opacity" Value="1"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <Style TargetType="Border" x:Key="OuterBorderOpaqueStyle">
-                <Setter Property="Opacity" Value="1"/>
-            </Style>
-            <flyoutDemo:BorderClipConverter x:Key="BorderClipConverter"/>
-            <Style TargetType="{x:Type Path}" x:Key="ArrowStyle">
-                <Setter Property="Data" Value="M0,0 L0,6 L3,3 Z"/>
-                <Setter Property="Fill" Value="Black"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
-                <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
-                <Setter Property="Height" Value="8"/>
-                <Setter Property="Width" Value="4"/>
-                <Setter Property="Stretch" Value="Fill"/>
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <RotateTransform Angle="90" />
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ToggleButton}}, Path=IsChecked}"
-                                                         Value="True">
-                        <DataTrigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
-                                                    By="180"
-                                                    BeginTime="00:00:00.2"
-                                                    Duration="00:00:00.1" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </DataTrigger.EnterActions>
-                        <DataTrigger.ExitActions>
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle"
-                                                    By="-180"
-                                                    BeginTime="00:00:00.2"
-                                                    Duration="00:00:00.1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </DataTrigger.ExitActions>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-
-        </ResourceDictionary>
+        <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
     </UserControl.Resources>
+    
     <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Center" >
         <Border.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
+            <!--X="{Binding HiddenX}"-->
+            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}"  />
         </Border.RenderTransform>
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -113,7 +60,8 @@
                 <ToggleButton.Triggers>
                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                         <BeginStoryboard>
-                            <Storyboard Completed="OnExpanded" >
+                            <!--Completed="OnExpanded"-->
+                            <Storyboard  >
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="-10" />
                                 </DoubleAnimationUsingKeyFrames>
@@ -126,7 +74,8 @@
 
                     <EventTrigger RoutedEvent="ToggleButton.Unchecked">
                         <BeginStoryboard>
-                            <Storyboard Completed="OnHidden" >
+                            <!--Completed="OnHidden"-->
+                            <Storyboard  >
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
                                     <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
                                 </DoubleAnimationUsingKeyFrames>

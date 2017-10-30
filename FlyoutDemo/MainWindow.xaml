@@ -135,9 +135,13 @@
         <Border Background="Purple" Grid.Row="1" Grid.Column="1">
             <StackPanel>
                 <RadioButton GroupName="Location" Content="Top Left" IsChecked="{Binding IsTopLeft}"/>
+                <RadioButton GroupName="Location" Content="Top" IsChecked="{Binding IsTop}"/>
                 <RadioButton GroupName="Location" Content="Top Right" IsChecked="{Binding IsTopRight}"/>
+                <RadioButton GroupName="Location" Content="Right" IsChecked="{Binding IsRight}"/>
                 <RadioButton GroupName="Location" Content="Bottom Right" IsChecked="{Binding IsBottomRight}"/>
+                <RadioButton GroupName="Location" Content="Bottom" IsChecked="{Binding IsBottom}"/>
                 <RadioButton GroupName="Location" Content="Bottom Left" IsChecked="{Binding IsBottomLeft}"/>
+                <RadioButton GroupName="Location" Content="Left" IsChecked="{Binding IsLeft}"/>
             </StackPanel>
             <!--<Button Content="TestButton"/>-->
 
