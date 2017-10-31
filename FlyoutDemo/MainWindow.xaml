@@ -102,7 +102,7 @@
             <!--<StackPanel>
                 <Label Content="Set in View!"/>
             </StackPanel>-->
-            <Grid Height="70" Width="150" Background="Purple">
+            <Grid Height="170" Width="250" Background="Purple">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="65"/>
                     <ColumnDefinition Width="*"/>

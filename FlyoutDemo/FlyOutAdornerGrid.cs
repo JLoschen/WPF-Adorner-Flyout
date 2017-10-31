@@ -162,17 +162,22 @@ namespace FlyoutDemo
 
         private FrameworkElement CreateContent()
         {
-            //return GetCornerFlyout();
-            //return GetTopFlyout();
-            //return GetFlyout2();
-            //return GetTopRightCornerFlyout();
-            //return GetBottomRightCornerFlyout();
-            //return GetBottomLeftCornerFlyout();
-
             switch (FlyoutPlacement)
             {
                 case FlyoutPlacement.TopLeft:
-                    return GetTopLeftCornerFlyout();
+                    //return GetTopLeftCornerFlyout();
+                    //var flyoutControl = new TopLeftCornerFlyout
+                    //{
+                    //    DataContext = this
+                    //};
+
+                    //flyoutControl.Loaded += OnLoadedTopLeft;
+
+                    //return flyoutControl;
+                    var element = new TopLeftCornerFlyout { DataContext = this };
+                    element.Loaded += OnLoaded;
+                    //FlyoutContent.DataContext = DataContext;
+                    return element;
                 case FlyoutPlacement.TopRight:
                     return GetTopRightCornerFlyout();
                 case FlyoutPlacement.BottomRight:
@@ -189,6 +194,11 @@ namespace FlyoutDemo
                     return GetLeftFlyout();
             }
             return GetTopLeftCornerFlyout();
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            FlyoutContent.DataContext = DataContext;
         }
 
         private LeftFlyout GetLeftFlyout()

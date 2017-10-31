@@ -3,18 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
              mc:Ignorable="d"
              ClipToBounds="True" 
              HorizontalAlignment="Center"
              VerticalAlignment="Bottom"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
+        <ResourceDictionary>
+            <flyoutDemo:MathConverter x:Key="MathConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Border CornerRadius="0,0,10,0" Background="LightGray" x:Name="OuterBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Center" >
         <Border.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}"  />
+            <TranslateTransform x:Name="FlyOut" Y="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE - 15)}"  />
         </Border.RenderTransform>
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -51,7 +57,7 @@
                     </Style>
                 </ToggleButton.Style>
 
-                <Path Style="{StaticResource ArrowStyle}" x:Name="arrow" Data="M-3,0 L0,3 L3,0 Z" Height="4" Width="8" Margin="0"/>
+                <Path Style="{StaticResource ArrowStyle}" x:Name="arrow" Data="M-3,3 L0,0 L3,3 Z" Height="4" Width="8" Margin="0"/>
                 <ToggleButton.Triggers>
                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                         <BeginStoryboard>
@@ -67,7 +73,7 @@
                         <BeginStoryboard>
                             <Storyboard  >
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
+                                    <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE - 15)}"/>
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                         </BeginStoryboard>

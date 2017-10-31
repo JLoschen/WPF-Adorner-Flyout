@@ -3,19 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:flyoutDemo="clr-namespace:FlyoutDemo"
              mc:Ignorable="d"
              ClipToBounds="True"
              HorizontalAlignment="Left" 
              VerticalAlignment="Bottom"
              d:DesignHeight="300" d:DesignWidth="300" >
     <UserControl.Resources>
-        <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
+        <ResourceDictionary>
+            <flyoutDemo:MathConverter x:Key="MathConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RenderTransform>
-            <TranslateTransform x:Name="FlyOut" Y="{Binding HiddenY}" X="{Binding HiddenX}" />
+            <TranslateTransform x:Name="FlyOut" Y="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE - 31)}"  
+                                X="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(31 - @VALUE)}" />
         </Grid.RenderTransform>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
@@ -69,10 +77,10 @@
                     <BeginStoryboard>
                         <Storyboard >
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="Y">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenY}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(@VALUE -31)}" />
                             </DoubleAnimationUsingKeyFrames>
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FlyOut" Storyboard.TargetProperty="X">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding HiddenX}" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.40"  Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(31 - @VALUE)}" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
