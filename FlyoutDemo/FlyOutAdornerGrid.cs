@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
 using FlyoutDemo.Flyouts;
 
 namespace FlyoutDemo
@@ -10,9 +11,8 @@ namespace FlyoutDemo
         #region Dependency Properties
         public static readonly DependencyProperty IsFlyoutVisibleProperty = DependencyProperty.Register(nameof(IsFlyoutVisible), typeof(bool), typeof(FlyOutAdornerGrid), new FrameworkPropertyMetadata(IsAdornerVisible_PropertyChanged));
         public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(nameof(FlyoutContent), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
-        public static readonly DependencyProperty HiddenYProperty = DependencyProperty.Register(nameof(HiddenY), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
-        public static readonly DependencyProperty HiddenXProperty = DependencyProperty.Register(nameof(HiddenX), typeof(int), typeof(FlyOutAdornerGrid), new PropertyMetadata(0));
         public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
+        public static readonly DependencyProperty BorderColorProperty = DependencyProperty.Register(nameof(BorderColor), typeof(SolidColorBrush), typeof(FlyOutAdornerGrid), new PropertyMetadata(new SolidColorBrush(Colors.LightGray)));
 
         private static void OnFlyoutPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -27,16 +27,10 @@ namespace FlyoutDemo
             set { SetValue(FlyoutPlacementProperty, value); }
         }
 
-        public int HiddenY
+        public Brush BorderColor
         {
-            get { return (int)GetValue(HiddenYProperty); }
-            set { SetValue(HiddenYProperty, value); }
-        }
-
-        public int HiddenX
-        {
-            get { return (int)GetValue(HiddenXProperty); }
-            set { SetValue(HiddenXProperty, value); }
+            get { return (Brush)GetValue(BorderColorProperty); }
+            set { SetValue(BorderColorProperty, value); }
         }
 
         public FrameworkElement FlyoutContent
@@ -162,222 +156,39 @@ namespace FlyoutDemo
 
         private FrameworkElement CreateContent()
         {
+            var content = GetFlyout();
+            content.DataContext = this;
+            content.Loaded += OnLoaded;
+            return content;
+        }
+
+        private FrameworkElement GetFlyout()
+        {
             switch (FlyoutPlacement)
             {
                 case FlyoutPlacement.TopLeft:
-                    //return GetTopLeftCornerFlyout();
-                    //var flyoutControl = new TopLeftCornerFlyout
-                    //{
-                    //    DataContext = this
-                    //};
-
-                    //flyoutControl.Loaded += OnLoadedTopLeft;
-
-                    //return flyoutControl;
-                    var element = new TopLeftCornerFlyout { DataContext = this };
-                    element.Loaded += OnLoaded;
-                    //FlyoutContent.DataContext = DataContext;
-                    return element;
+                    return new TopLeftCornerFlyout();
                 case FlyoutPlacement.TopRight:
-                    return GetTopRightCornerFlyout();
+                    return new TopRightCornerFlyout();
                 case FlyoutPlacement.BottomRight:
-                    return GetBottomRightCornerFlyout();
+                    return new BottomRightCornerFlyout();
                 case FlyoutPlacement.BottomLeft:
-                    return GetBottomLeftCornerFlyout();
+                    return new BottomLeftCornerFlyout();
                 case FlyoutPlacement.Top:
-                    return GetTopFlyout();
+                    return new TopFlyout();
                 case FlyoutPlacement.Right:
-                    return GetRightFlyout();
+                    return new RightFlyout();
                 case FlyoutPlacement.Bottom:
-                    return GetBottomFlyout();
+                    return new BottomFlyout();
                 case FlyoutPlacement.Left:
-                    return GetLeftFlyout();
+                    return new LeftFlyout();
+                default:
+                    return new TopLeftCornerFlyout();
             }
-            return GetTopLeftCornerFlyout();
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private LeftFlyout GetLeftFlyout()
-        {
-            var flyoutControl = new LeftFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedLeft;
-            return flyoutControl;
-        }
-
-        private void OnLoadedLeft(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as LeftFlyout;
-            if (flyout == null) return;
-            HiddenX = 15 - (int)flyout.ActualWidth;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private BottomFlyout GetBottomFlyout()
-        {
-            var flyoutControl = new BottomFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedBottom;
-            return flyoutControl;
-        }
-
-        private void OnLoadedBottom(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as BottomFlyout;
-            if (flyout == null) return;
-            HiddenY = (int)flyout.ActualHeight - 15;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private Flyout2 GetFlyout2()
-        {
-            var flyoutControl = new Flyout2
-            {
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                ClipToBounds = true,
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoaded2;
-            return flyoutControl;
-        }
-
-        private BottomRightCornerFlyout GetBottomRightCornerFlyout()
-        {
-            var flyoutControl = new BottomRightCornerFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedBottomRight;
-            return flyoutControl;
-        }
-
-        private BottomLeftCornerFlyout GetBottomLeftCornerFlyout()
-        {
-            var flyoutControl = new BottomLeftCornerFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedBottomLeft;
-            return flyoutControl;
-        }
-
-        private TopRightCornerFlyout GetTopRightCornerFlyout()
-        {
-            var flyoutControl = new TopRightCornerFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedTopRight;
-            return flyoutControl;
-        }
-
-        private TopLeftCornerFlyout GetTopLeftCornerFlyout()
-        {
-            var flyoutControl = new TopLeftCornerFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedTopLeft;
-
-            return flyoutControl;
-        }
-
-        private TopFlyout GetTopFlyout()
-        {
-            var flyoutControl = new TopFlyout
-            {
-                DataContext = this
-            };
-            
-            flyoutControl.Loaded += OnLoadedTop;
-            return flyoutControl;
-        }
-
-        private RightFlyout GetRightFlyout()
-        {
-            var flyoutControl = new RightFlyout
-            {
-                DataContext = this
-            };
-
-            flyoutControl.Loaded += OnLoadedRight;
-            return flyoutControl;
-        }
-
-        private void OnLoadedRight(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as RightFlyout;
-            if (flyout == null) return;
-            HiddenX = (int)flyout.ActualWidth - 15;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoadedBottomLeft(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as BottomLeftCornerFlyout;
-            if (flyout == null) return;
-            HiddenY = (int)flyout.ActualHeight - 31;
-            HiddenX = 31 - (int)flyout.ActualWidth;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoadedTop(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as TopFlyout;
-            if (flyout == null) return;
-            HiddenY = 15 - (int)flyout.ActualHeight;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoadedTopLeft(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as TopLeftCornerFlyout;
-            if (flyout == null) return;
-            HiddenX = 31 - (int)flyout.ActualWidth;
-            HiddenY = 31 - (int)flyout.ActualHeight;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoadedTopRight(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as TopRightCornerFlyout;
-            if (flyout == null) return;
-            HiddenY = 31 - (int)flyout.ActualHeight;
-            HiddenX = (int)flyout.ActualWidth - 31;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoadedBottomRight(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as BottomRightCornerFlyout;
-            if (flyout == null) return;
-            HiddenY = (int)flyout.ActualHeight - 31;
-            HiddenX = (int)flyout.ActualWidth - 31;
-            FlyoutContent.DataContext = DataContext;
-        }
-
-        private void OnLoaded2(object sender, RoutedEventArgs e)
-        {
-            var flyout = sender as Flyout2;
-            if (flyout == null) return;
-            HiddenX = 25 - (int)flyout.ActualWidth;
-            HiddenY = 25 - (int)flyout.ActualHeight;
             FlyoutContent.DataContext = DataContext;
         }
 

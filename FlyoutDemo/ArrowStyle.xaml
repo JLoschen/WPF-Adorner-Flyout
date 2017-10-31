@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:FlyoutDemo">
+    <local:MathConverter x:Key="MathConverter"/>
+    <local:ToggleButtonLighterColorConverter x:Key="ToggleButtonLighterColorConverter"/>
     <local:BorderClipConverter x:Key="BorderClipConverter"/>
     <Style TargetType="{x:Type Path}" x:Key="ArrowStyle">
         <Setter Property="Data" Value="M0,0 L0,6 L3,3 Z"/>

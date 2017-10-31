@@ -97,7 +97,7 @@
     </Window.DataContext>
     <!--ShowFilter="True"-->
     <!--IsFlyoutVisible="True"-->
-    <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}">
+    <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}" BorderColor="LightGray">
         <local:FlyOutAdornerGrid.FlyoutContent>
             <!--<StackPanel>
                 <Label Content="Set in View!"/>

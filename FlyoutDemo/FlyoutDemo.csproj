@@ -85,15 +85,11 @@
     <Compile Include="Flyouts\BottomRightCornerFlyout.xaml.cs">
       <DependentUpon>BottomRightCornerFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Flyouts\FlyoutBase.cs" />
     <Compile Include="Flyouts\LeftFlyout.xaml.cs">
       <DependentUpon>LeftFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyouts\RightFlyout.xaml.cs">
       <DependentUpon>RightFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Flyouts\TestControl.xaml.cs">
-      <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyouts\TopLeftCornerFlyout.xaml.cs">
       <DependentUpon>TopLeftCornerFlyout.xaml</DependentUpon>
@@ -110,6 +106,7 @@
       <DependentUpon>TopRightCornerFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="MathConverter.cs" />
+    <Compile Include="ToggleButtonLighterColorConverter.cs" />
     <Compile Include="UIHelper.cs" />
     <Page Include="ArrowStyle.xaml">
       <SubType>Designer</SubType>
@@ -132,10 +129,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Flyouts\RightFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Flyouts\TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
