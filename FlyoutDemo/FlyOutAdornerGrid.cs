@@ -181,8 +181,52 @@ namespace FlyoutDemo
                     return GetBottomLeftCornerFlyout();
                 case FlyoutPlacement.Top:
                     return GetTopFlyout();
+                case FlyoutPlacement.Right:
+                    return GetRightFlyout();
+                case FlyoutPlacement.Bottom:
+                    return GetBottomFlyout();
+                case FlyoutPlacement.Left:
+                    return GetLeftFlyout();
             }
             return GetTopLeftCornerFlyout();
+        }
+
+        private LeftFlyout GetLeftFlyout()
+        {
+            var flyoutControl = new LeftFlyout
+            {
+                DataContext = this
+            };
+
+            flyoutControl.Loaded += OnLoadedLeft;
+            return flyoutControl;
+        }
+
+        private void OnLoadedLeft(object sender, RoutedEventArgs e)
+        {
+            var flyout = sender as LeftFlyout;
+            if (flyout == null) return;
+            HiddenX = 15 - (int)flyout.ActualWidth;
+            FlyoutContent.DataContext = DataContext;
+        }
+
+        private BottomFlyout GetBottomFlyout()
+        {
+            var flyoutControl = new BottomFlyout
+            {
+                DataContext = this
+            };
+
+            flyoutControl.Loaded += OnLoadedBottom;
+            return flyoutControl;
+        }
+
+        private void OnLoadedBottom(object sender, RoutedEventArgs e)
+        {
+            var flyout = sender as BottomFlyout;
+            if (flyout == null) return;
+            HiddenY = (int)flyout.ActualHeight - 15;
+            FlyoutContent.DataContext = DataContext;
         }
 
         private Flyout2 GetFlyout2()
@@ -254,7 +298,26 @@ namespace FlyoutDemo
             flyoutControl.Loaded += OnLoadedTop;
             return flyoutControl;
         }
-        
+
+        private RightFlyout GetRightFlyout()
+        {
+            var flyoutControl = new RightFlyout
+            {
+                DataContext = this
+            };
+
+            flyoutControl.Loaded += OnLoadedRight;
+            return flyoutControl;
+        }
+
+        private void OnLoadedRight(object sender, RoutedEventArgs e)
+        {
+            var flyout = sender as RightFlyout;
+            if (flyout == null) return;
+            HiddenX = (int)flyout.ActualWidth - 15;
+            FlyoutContent.DataContext = DataContext;
+        }
+
         private void OnLoadedBottomLeft(object sender, RoutedEventArgs e)
         {
             var flyout = sender as BottomLeftCornerFlyout;

@@ -76,11 +76,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BorderClipConverter.cs" />
+    <Compile Include="Flyouts\BottomFlyout.xaml.cs">
+      <DependentUpon>BottomFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Flyouts\BottomLeftCornerFlyout.xaml.cs">
       <DependentUpon>BottomLeftCornerFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyouts\BottomRightCornerFlyout.xaml.cs">
       <DependentUpon>BottomRightCornerFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flyouts\LeftFlyout.xaml.cs">
+      <DependentUpon>LeftFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Flyouts\RightFlyout.xaml.cs">
       <DependentUpon>RightFlyout.xaml</DependentUpon>
@@ -104,11 +110,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Flyouts\BottomFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Flyouts\BottomLeftCornerFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Flyouts\BottomRightCornerFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Flyouts\LeftFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
