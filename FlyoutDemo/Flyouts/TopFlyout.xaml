@@ -30,7 +30,9 @@
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
             <ContentPresenter Grid.Row="0" Content="{Binding FlyoutContent}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <ToggleButton Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="arrowToggle" Height="15" Margin="1,0,1,1">
+            <!--, UpdateSourceTrigger=PropertyChanged-->
+            <!--, Mode=TwoWay-->
+            <ToggleButton Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="arrowToggle" Height="15" Margin="1,0,1,1" IsChecked="{Binding IsExpanded }">
                 <ToggleButton.Style>
                     <Style TargetType="ToggleButton">
                         <Setter Property="Background" Value="{Binding BorderColor}" />

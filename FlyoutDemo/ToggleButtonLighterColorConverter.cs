@@ -24,6 +24,5 @@ namespace FlyoutDemo
         {
             return Color.FromArgb(byte.MaxValue, (byte)(color.R * coef), (byte)(color.G * coef),(byte)(color.B * coef));
         }
-
     }
 }

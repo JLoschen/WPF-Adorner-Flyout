@@ -13,6 +13,8 @@ namespace FlyoutDemo
         public static readonly DependencyProperty FlyoutContentProperty = DependencyProperty.Register(nameof(FlyoutContent), typeof(FrameworkElement), typeof(FlyOutAdornerGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty FlyoutPlacementProperty = DependencyProperty.Register(nameof(FlyoutPlacement), typeof(FlyoutPlacement), typeof(FlyOutAdornerGrid), new PropertyMetadata(FlyoutPlacement.TopLeft, OnFlyoutPositionChanged));
         public static readonly DependencyProperty BorderColorProperty = DependencyProperty.Register(nameof(BorderColor), typeof(SolidColorBrush), typeof(FlyOutAdornerGrid), new PropertyMetadata(new SolidColorBrush(Colors.LightGray)));
+        public static readonly DependencyProperty ShowDropShadowProperty = DependencyProperty.Register(nameof(ShowDropShadow), typeof(bool), typeof(FlyOutAdornerGrid), new PropertyMetadata(true));
+        public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(FlyOutAdornerGrid), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         private static void OnFlyoutPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -25,6 +27,18 @@ namespace FlyoutDemo
         {
             get { return (FlyoutPlacement)GetValue(FlyoutPlacementProperty); }
             set { SetValue(FlyoutPlacementProperty, value); }
+        }
+
+        public bool ShowDropShadow
+        {
+            get { return (bool)GetValue(ShowDropShadowProperty); }
+            set { SetValue(ShowDropShadowProperty, value); }
+        }
+
+        public bool IsExpanded
+        {
+            get { return (bool)GetValue(IsExpandedProperty); }
+            set { SetValue(IsExpandedProperty, value); }
         }
 
         public Brush BorderColor

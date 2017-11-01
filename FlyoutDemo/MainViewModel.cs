@@ -29,6 +29,13 @@ namespace FlyoutDemo
         } 
         private FlyoutPlacement _flyoutLocation;
 
+        public bool IsExpanded 
+        { 
+            get{ return _isExpanded; } 
+            set{ Set(ref _isExpanded, value); } 
+        } 
+        private bool _isExpanded;
+
         public bool ShowAdorner 
         { 
             get{ return _showAdorner; } 

@@ -12,7 +12,11 @@
         <ResourceDictionary Source="/FlyoutDemo;component/ArrowStyle.xaml" />
     </UserControl.Resources>
 
-    <Grid>
+    <!--Effect="{Binding BorderColor, Converter={StaticResource DropShadowConverter}}"-->
+    <Grid >
+        <!--<Grid.Effect>
+            <DropShadowEffect BlurRadius="50" ShadowDepth="0"/>
+        </Grid.Effect>-->
         <Grid.RenderTransform>
             <TranslateTransform x:Name="FlyOut" X="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(31 - @VALUE)}"
                                 Y="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource MathConverter}, ConverterParameter=(31 - @VALUE)}"/>
@@ -25,7 +29,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+        <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Bottom" IsChecked="{Binding IsExpanded}"
                       Margin="0,0,1,1" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <ToggleButton.Style>
                 <Style TargetType="ToggleButton">

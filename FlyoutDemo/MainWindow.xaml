@@ -96,8 +96,9 @@
         <local:MainViewModel/>
     </Window.DataContext>
     <!--ShowFilter="True"-->
-    <!--IsFlyoutVisible="True"-->
-    <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}" BorderColor="LightGray">
+    <!--IsFlyoutVisible="True"--> 
+    <!--,UpdateSourceTrigger=PropertyChanged-->
+    <local:FlyOutAdornerGrid IsFlyoutVisible="{Binding ShowAdorner}"  FlyoutPlacement="{Binding FlyoutLocation}" BorderColor="LightGray" IsExpanded="{Binding IsExpanded}">
         <local:FlyOutAdornerGrid.FlyoutContent>
             <!--<StackPanel>
                 <Label Content="Set in View!"/>
@@ -130,7 +131,10 @@
         <Border Background="Blue" Grid.Row="0" Grid.Column="0"/>
         <Border Background="Red" Grid.Row="0" Grid.Column="1"/>
         <Border Background="Orange" Grid.Row="1" Grid.Column="0">
-            <CheckBox Content="Show Adorner" IsChecked="{Binding ShowAdorner}"/>
+            <StackPanel>
+                <CheckBox Content="Is Expanded" IsChecked="{Binding IsExpanded}"/>
+                <CheckBox Content="Show Adorner" IsChecked="{Binding ShowAdorner}"/>
+            </StackPanel>
         </Border>
         <Border Background="Purple" Grid.Row="1" Grid.Column="1">
             <StackPanel>

@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BorderClipConverter.cs" />
+    <Compile Include="DropShadowConverter.cs" />
     <Compile Include="Flyouts\BottomFlyout.xaml.cs">
       <DependentUpon>BottomFlyout.xaml</DependentUpon>
     </Compile>
